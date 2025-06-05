@@ -1,0 +1,28 @@
+/* Определение параметров */
+a1: 0.25;  b1: 9;
+a2: 0.5;   b2: 7.75;
+a3: 1.1;   b3: 0.25;
+a4: 25;    b4: -29.75;
+UBX1: 5; UBX2: 15; UBX3: 30;
+
+/* Определение кусочной функции */
+UBHX(UBX) := 
+    if UBX <= UBX1 then
+        a1*UBX + b1
+    else if UBX <= UBX2 then
+        a2*UBX + b2
+    else if UBX <= UBX3 then
+        a3*UBX + b3
+    else
+        a4*UBX + b4;
+
+/* Построение графика */
+plot2d(UBHX(UBX), [UBX, 0, 35], [y, -50, 50],
+    [xlabel, "U_{BX}, B"],
+    [ylabel, "U_{BHX}, B"],
+    [legend, false],
+    [grid2d, true],
+    [style, [lines, 2]],
+    [color, blue],
+    [gnuplot_preamble, "set title 'График функции U_{BHX}(U_{BX})'"]
+);
