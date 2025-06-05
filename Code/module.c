@@ -20,6 +20,14 @@ double parameter(double *Uvyh, int n, double dt) {
     return dlit;
 }
 
+void formT(int n, double *t, double *dt, double tStart, double tEnd) {
+    int i;
+    *dt = (tEnd - tStart) / (n-1);
+    
+    for (i=0; i < n; i++) {
+        t[i] = tStart + i*(*dt);
+    }
+}
 
 void formUvh(int n, double *Uvh, double *t, int a, int b, int tn,int t1,int t2, int tk) {
     int i;
