@@ -158,9 +158,10 @@ void writeInFiles(int n) {
     double t[n], Uvh[n], Uvyh[n];
     int i;
     int a = 10, b = 10, tn = 5, t1 = 10, t2 = 40, tk = 45;
-    double a1 = 0.25, b1 = 9, a2 = 0.5, b2 =7.75, a3 = 1.1, b3 = 0.25;
+    double a1 = 0.25, b1 = 9, a2 = 0.5, b2 =7.75, a3 = 1.1, b3 = 0.25, tS = 0.0, tE = 45, dt;
     int Uvh1=5, Uvh2=15, Uvh3=30;
 
+    formT(n, t, &dt, tS, tE);
     formUvh(n, Uvh, t, a, b, tn, t1, t2, tk);
     formUvyh(n, Uvyh, Uvh, a1, b1, a2, b2, a3, b3, Uvh1, Uvh2, Uvh3);
     printToFile(t, Uvh, Uvyh, n);
@@ -172,9 +173,10 @@ void controlCalc(int n) {
     double t[n], Uvh[n], Uvyh[n], dt;
     int i;
     int a = 10, b = 10, tn = 5, t1 = 10, t2 = 40, tk = 45;
-    double a1 = 0.25, b1 = 9, a2 = 0.5, b2 =7.75, a3 = 1.1, b3 = 0.25;
+    double a1 = 0.25, b1 = 9, a2 = 0.5, b2 =7.75, a3 = 1.1, b3 = 0.25, tS = 0.0, tE = 45;
     int Uvh1=5, Uvh2=15, Uvh3=30;
 
+    formT(n, t, &dt, tS, tE);
     formUvh(n, Uvh, t, a, b, tn, t1, t2, tk);
     formUvyh(n, Uvyh, Uvh, a1, b1, a2, b2, a3, b3, Uvh1, Uvh2, Uvh3);
 
@@ -208,7 +210,7 @@ void precisionCalc(double eps) {
     int n = 2, i, dt;
 
     int a = 10, b = 10, tn = 5, t1 = 10, t2 = 40, tk = 45;
-    double a1 = 0.25, b1 = 9, a2 = 0.5, b2 =7.75, a3 = 1.1, b3 = 0.25;
+    double a1 = 0.25, b1 = 9, a2 = 0.5, b2 =7.75, a3 = 1.1, b3 = 0.25, tS = 0.0, tE = 45;
     int Uvh1=5, Uvh2=15, Uvh3=30;
 
     printf("\nРасчет параметра с точностью %.10f:\n", eps);
@@ -216,7 +218,7 @@ void precisionCalc(double eps) {
     
     while (p > eps) {
         double t[n], Uvh[n], Uvyh[n];
-
+        formT(n, t, &dt, tS, tE);
         formUvh(n, Uvh, t,a,b,tn,t1,t2,tk);
         formUvyh(n, Uvyh, Uvh,a1,b1,a2,b2,a3,b3,Uvh1,Uvh2,Uvh3);
         
